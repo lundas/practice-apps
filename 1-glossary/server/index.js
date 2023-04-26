@@ -8,11 +8,11 @@ const app = express();
 app.use(express.static(path.join(__dirname, "../client/dist")));
 app.use(express.json());
 
-app.get()
-app.post()
-app.put()
-app.delete()
-app.options((req, res) => {
+// app.get()
+// app.post()
+// app.put()
+// app.delete()
+app.options('/', (req, res) => {
   res.sendStatus(204);
 })
 

@@ -4,13 +4,14 @@ module.exports = {
   getAll: function () {
     return Word.find({}).exec();
   },
-  createWord: function (word) {
+  createWord: function (wordObj) {
     return Word.create(word);
   },
-  updateWord: function (word) {
-
+  updateWord: function (wordObj) {
+    return Word.updateOne({ word: wordObj.word }, { defintion: wordObj.definition }).exec();
   },
-  deleteWord: function (word) {
+  deleteWord: function (wordObj) {
+    return Word.deleteOne({ word: wordObj.word });
 
   },
   _initWords: function () {
