@@ -5,10 +5,10 @@ module.exports = {
     return Word.find({}).exec();
   },
   createWord: function (wordObj) {
-    return Word.create(word);
+    return Word.create(wordObj);
   },
   updateWord: function (wordObj) {
-    return Word.updateOne({ word: wordObj.word }, { defintion: wordObj.definition }).exec();
+    return Word.updateOne({ word: wordObj.word }, { definition: wordObj.definition }).exec();
   },
   deleteWord: function (wordObj) {
     return Word.deleteOne({ word: wordObj.word });
