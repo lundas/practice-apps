@@ -13,18 +13,31 @@ const App = () => {
 
   const getWords = () => {
     return axios.get('/glossary')
+      .then((response) => {
+        setWordList(response.date);
+        setFilteredWordList(response.data);
+      })
   }
 
   const addWord = (data) => {
-    return axios.post('/glossary', data);
+    return axios.post('/glossary', data)
+      .then(() => {
+        getWords();
+      });
   }
 
   const updateWord = (data) => {
-    return axios.put('/glossary', data);
+    return axios.put('/glossary', data)
+      .then(() => {
+        getWords();
+      });
   }
 
   const deleteWord = (data) => {
-    return axios.delete('/glossary', data);
+    return axios.delete('/glossary', { data })
+      .then(()=>{
+        getWords();
+      });
   }
 
   const search = (term) => {
@@ -40,16 +53,9 @@ const App = () => {
 
   useEffect(() => {
     let ignore = false;
-    getWords()
-      .then((response) => {
-        if (!ignore) {
-          setWordList(response.data)
-          setFilteredWordList(response.data);
-        }
-      })
-      .catch((err) => {
-        console.log('Axios GET error: ', err);
-      });
+    if (!ignore) {
+      getWords();
+    }
     return () => {
       ignore = true;
     }
