@@ -1,9 +1,8 @@
 import React from "react";
 
 
+const AddWords = ({ addWord }) => (
+  <div>Add Word Form goes here</div>
+)
 
-
-
-
-
-default export AddWords;
+export default AddWords;
