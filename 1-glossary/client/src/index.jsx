@@ -9,12 +9,12 @@ import WordList from "./components/WordList.jsx";
 const App = () => {
 
   const [wordList, setWordList] = useState([]);
-  const [filteredWordList, setFilteredWordList] = useState(['what']);
+  const [filteredWordList, setFilteredWordList] = useState([]);
 
   const getWords = () => {
     return axios.get('/glossary')
       .then((response) => {
-        setWordList(response.date);
+        setWordList(response.data);
         setFilteredWordList(response.data);
       })
   }
@@ -27,6 +27,7 @@ const App = () => {
   }
 
   const updateWord = (data) => {
+    // TODO: refactor to work with _id
     return axios.put('/glossary', data)
       .then(() => {
         getWords();
