@@ -8,7 +8,8 @@ module.exports = {
     return Word.create(wordObj);
   },
   updateWord: function (wordObj) {
-    return Word.updateOne({ word: wordObj.word }, { definition: wordObj.definition }).exec();
+    // refactor tor work with _id
+    return Word.updateOne({ _id: wordObj._id }, { word: wordObj.word, definition: wordObj.definition }).exec();
   },
   deleteWord: function (wordObj) {
     return Word.deleteOne({ word: wordObj.word });

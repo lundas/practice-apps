@@ -12,7 +12,7 @@ app.use(express.json());
 app.get('/glossary', (req, res) => {
   model.getAll()
     .then((response) => {
-      console.log('Mongo find response: ', response);
+      // console.log('Mongo find response: ', response);
       res.status(200).json(response);
     })
     .catch((err) => {
@@ -32,7 +32,7 @@ app.post('/glossary', (req, res) => {
 })
 app.put('/glossary', (req, res) => {
   model.updateWord(req.body)
-    .then(console.log(`${req.body.word} entry updated`))
+    .then(console.log(`${req.body._id} entry updated`))
     .then(res.sendStatus(204))
     .catch((err) => {
       console.log('app.put error: ', err);
@@ -40,6 +40,7 @@ app.put('/glossary', (req, res) => {
     })
 })
 app.delete('/glossary', (req, res) => {
+  console.log('***DEL req body:', req.body);
   model.deleteWord(req.body)
     .then(console.log(`${req.body.word} entry deleted`))
     .then(res.sendStatus(204))

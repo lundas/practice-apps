@@ -7,7 +7,7 @@ const Search = ({search}) => {
 
   return (
   <div>
-    <input type="search" value={term} onChange={(e) => {
+    <input type="search" placeholder="Search" value={term} onChange={(e) => {
       setTerm(e.target.value);
       search(e.target.value);
     }}/>
