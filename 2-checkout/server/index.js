@@ -22,9 +22,8 @@ app.use(express.static(path.join(__dirname, "../client/dist")));
 app.use(express.json());
 
 app.post('/checkout', (req, res) => {
-  console.log('POST request received:', req);
+  console.log(`POST request received from ${req.hostname}`);
   const data = Object.assign(req.body, { s_id: req.session_id });
-  console.log('Data obj:', data);
   model.create('responses', data)
     .then((results) => {
       console.log(`Successfully created ${req.session_id}`)

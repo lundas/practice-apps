@@ -1,5 +1,5 @@
 const db = require("./db");
-const mysql2 = require("mysql2");
+// const mysql2 = require("mysql2");
 
 module.exports = {
   create: function (table, data) {
