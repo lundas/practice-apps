@@ -1,5 +1,6 @@
 import axios from "axios";
 import React from "react";
+import { useState } from "react";
 import { render } from "react-dom";
 import ConfirmationPage from "./components/ConfirmationPage.jsx";
 import PaymentForm from "./components/PaymentForm.jsx";
@@ -9,20 +10,18 @@ import UserForm from "./components/UserForm.jsx";
 
 const App = () => {
 
-  const formData = {
-    "name": "Andrew",
-    "email": "andrew.s.lund@gmail.com",
-    "password": "password",
-    "address_line1": "1600 Grand Ave",
-    "city": "Saint Paul",
-    "state": "MN",
-    "zipcode": "55105",
-    "phone": "6082888226",
-    "ccn": "1234 5678 9101 1121",
-    "exp_date": "01/2020",
-    "cvv": "123",
-    "billing_zipcode": "02468"
-};
+  const [formData, setFormData] = useState({});
+
+  const purchase = (data) => {
+    axios.post('/checkout', data)
+      .then((response) => {
+        console.log('POST request sent');
+        console.log('POST response:', response);
+      })
+      .catch((err) => {
+        console.log('Axios POST error:', err);
+      })
+  }
 
   return (
     <div>
@@ -30,10 +29,11 @@ const App = () => {
       <p>
         <code>Page Cookie: {JSON.stringify(document.cookie, undefined, "\t")}</code>
       </p>
-      <UserForm />
-      <ShippingForm />
-      <PaymentForm />
-      <ConfirmationPage formData={formData}/>
+      <UserForm formData={formData} setFormData={setFormData} />
+      <ShippingForm formData={formData} setFormData={setFormData}/>
+      <PaymentForm formData={formData} setFormData={setFormData}/>
+      <ConfirmationPage formData={formData} purchase={purchase} />
+      <div id="submission-message" hidden>Your Order has been Submitted!</div>
       <button id="checkout-btn" onClick={(e)=>{
         e.target.hidden = true;
         document.querySelector('#user-form').hidden = false;
