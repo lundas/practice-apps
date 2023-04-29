@@ -37,7 +37,7 @@ const App = () => {
       <ShippingForm formData={formData} setFormData={setFormData}/>
       <PaymentForm formData={formData} setFormData={setFormData}/>
       <ConfirmationPage formData={formData} purchase={purchase} />
-      <div id="submission-message" hidden>Your Order has been Submitted!</div>
+      {/* <div id="submission-message" hidden>Your Order has been Submitted!</div> */}
       <button id="checkout-btn" onClick={(e)=>{
         e.target.hidden = true;
         document.querySelector('#user-form').hidden = false;

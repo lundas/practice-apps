@@ -28,8 +28,8 @@ const ConfirmationPage = ({ formData, purchase }) => (
     <button onClick={(e) => {
       purchase(formData);
       document.querySelector('#confirmation-page').hidden = true;
-      // document.querySelector('#checkout-btn').hidden = false;
-      document.querySelector('#submission-message').hidden = false;
+      document.querySelector('#checkout-btn').hidden = false;
+      // document.querySelector('#submission-message').hidden = false;
     }}>Submit</button>
   </div>
 );
