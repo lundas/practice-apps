@@ -15,12 +15,16 @@ const App = () => {
   const purchase = (data) => {
     axios.post('/checkout', data)
       .then((response) => {
-        console.log('POST request sent');
+        window.alert('Purchase Complete!');
         console.log('POST response:', response);
       })
       .catch((err) => {
-        console.log('Axios POST error:', err);
-      })
+        if (err.response) {
+          window.alert(`Submission Error: ${err.response.data}`);
+        } else {
+          console.log('Axios POST error:', err.message);
+        }
+      });
   }
 
   return (

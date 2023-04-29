@@ -31,6 +31,7 @@ app.post('/checkout', (req, res) => {
     })
     .catch((err) => {
       if (err.errno === 1062) {
+        console.log('Attempted to create a dulicate session');
         res.status(409).send(`Form ${req.session_id} has already been submitted`);
       } else {
         console.log(`Error creating ${req.session_id}:`, err);
